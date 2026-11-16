@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Petit à petit: learn French</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap">
+<style>
+:root{--bg:#EEF3F5;--card:#fff;--ink:#10253A;--mute:#5B6E7F;--acc:#1F5FBF;--on:#fff;--ok:#17845A;--bad:#C8312B;--edge:#CFDAE1;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0D1A26;--card:#142536;--ink:#E7EEF3;--mute:#93A5B4;--acc:#5C9BFF;--on:#0D1A26;--ok:#3DC38B;--bad:#FF7A72;--edge:#27405A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0D1A26;--card:#142536;--ink:#E7EEF3;--mute:#93A5B4;--acc:#5C9BFF;--on:#0D1A26;--ok:#3DC38B;--bad:#FF7A72;--edge:#27405A;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.5 "Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:640px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:2.2rem;line-height:1.05;margin:8px 0 4px;font-weight:800;letter-spacing:-.02em}
+h2{font-size:1.4rem;margin:0 0 6px;font-weight:600}
+p{margin:0 0 14px}.mute,small{color:var(--mute)}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+#line{display:flex;overflow-x:auto;margin:20px -16px 8px;padding:6px 16px 10px}
+.st{position:relative;flex:0 0 92px;background:none;border:0;padding:0;text-align:center;opacity:.5}
+.st.open,.st.on{opacity:1}
+.st::before{content:"";position:absolute;top:24px;right:50%;width:100%;height:5px;background:var(--edge)}
+.st.open::before{background:var(--acc)}
+.st:first-child::before{display:none}
+.st i{position:relative;z-index:1;display:grid;place-items:center;width:48px;height:48px;margin:0 auto;border-radius:50%;background:conic-gradient(var(--acc) calc(var(--p)*1%),var(--edge) 0)}
+.st b{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--card);font-weight:800}
+.st.on b{background:var(--acc);color:var(--on)}
+.st span{display:block;font-size:.78rem;line-height:1.2;margin-top:6px;padding:0 4px}
+.tabs{display:flex;gap:6px;margin:10px 0 14px;background:var(--edge);padding:4px;border-radius:14px}
+.tabs button{flex:1;border:0;background:none;padding:10px;border-radius:10px;font-weight:600}
+.tabs button[aria-selected="true"]{background:var(--card);box-shadow:0 1px 0 var(--edge)}
+.card{background:var(--card);border:1px solid var(--edge);border-radius:18px;padding:20px}
+.pri{background:var(--acc);color:var(--on);border:0;border-radius:12px;padding:12px 20px;font-weight:600}
+.sec{background:none;border:1px solid var(--edge);border-radius:12px;padding:10px 16px}
+.ph{list-style:none;margin:0;padding:0}
+.ph li{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--edge)}
+.ph li:first-child{border-top:0}
+.ph div{flex:1}.ph strong{display:block;font-size:1.1rem}
+.sp{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--edge);background:none;color:var(--acc)}
+.dots{letter-spacing:2px;color:var(--acc);font-size:.8rem}
+.big{font-size:2.1rem;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin:6px 0 16px}
+.num{font-size:4rem}
+.ch{display:grid;gap:8px}
+.ch button{text-align:left;background:none;border:1px solid var(--edge);border-radius:12px;padding:12px 14px}
+.ch button.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,transparent)}
+.ch button.no{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 15%,transparent)}
+input{width:100%;font:inherit;font-size:1.2rem;padding:12px 14px;border-radius:12px;border:2px solid var(--edge);background:var(--bg);color:var(--ink)}
+.acc{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.acc button{min-width:38px;padding:6px;border:1px solid var(--edge);border-radius:8px;background:none}
+.fb{margin:14px 0;padding:12px 14px;border-radius:12px;border-left:5px solid var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent)}
+.fb.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,transparent)}
+.meta{display:flex;justify-content:space-between;color:var(--mute);font-size:.9rem;margin-bottom:6px}
+.bar{height:6px;border-radius:3px;background:var(--edge);margin-bottom:14px;overflow:hidden}.bar i{display:block;height:100%;background:var(--acc)}
+details{margin-top:16px}summary{cursor:pointer;color:var(--acc);font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:4px 14px;margin-top:10px}
+.grid span{font-size:.95rem}.grid b{color:var(--acc);display:inline-block;min-width:2.2em}
+.pr{display:block;font-style:italic;color:var(--acc);font-size:.92rem}.fb .pr{display:inline}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+@media (prefers-reduced-motion:no-preference){.st i{transition:transform .15s}.st:active i{transform:scale(.94)}}
+</style>
+</head>
+<body>
+<main>
+<h1>Petit à petit</h1>
+<p class="mute">French, one station at a time. Every station is open: jump to any stop on the line, learn the phrases, then practise them.</p>
+<nav id="line" aria-label="Stations"></nav>
+<div class="tabs" role="tablist">
+<button role="tab" data-tab="learn">Learn</button>
+<button role="tab" data-tab="practice">Practise</button>
+<button role="tab" data-tab="count">Count</button>
+</div>
+<section id="view" aria-live="polite"></section>
+</main>
+<script>
+var U=["zéro","un","deux","trois","quatre","cinq","six","sept","huit","neuf","dix","onze","douze","treize","quatorze","quinze","seize"];
+var E=["zero","one","two","three","four","five","six","seven","eight","nine","ten"];
+function f(n){
+ if(n<17)return U[n];
+ if(n<20)return "dix-"+U[n-10];
+ if(n<70){var t=["","","vingt","trente","quarante","cinquante","soixante"][n/10|0],r=n%10;return r==0?t:r==1?t+" et un":t+"-"+U[r]}
+ if(n<80){var r2=n-60;return r2==11?"soixante et onze":"soixante-"+f(r2)}
+ if(n<100){var r3=n-80;return r3==0?"quatre-vingts":"quatre-vingt-"+f(r3)}
+ var h=n/100|0,r4=n%100,head=h==1?"cent":U[h]+" cent"+(r4==0&&h>1?"s":"");
+ return r4==0?head:head+" "+f(r4);
+}
+var L=[
+{n:"Greetings",c:[["Bonjour","Hello / Good day"],["Bonsoir","Good evening"],["Salut","Hi / Bye (informal)"],["Au revoir","Goodbye"],["Merci","Thank you"],["S’il vous plaît","Please"],["Oui","Yes"],["Non","No"],["Pardon","Sorry / Excuse me"]]},
+{n:"Numbers 0–10",c:E.map(function(e,i){return [U[i],e+" ("+i+")"]})},
+{n:"Meeting people",c:[["Je m’appelle Anna","My name is Anna"],["Comment vous appelez-vous ?","What is your name?"],["Enchanté","Nice to meet you"],["Comment ça va ?","How are you?"],["Ça va bien, merci","I’m fine, thank you"],["Je suis de Lyon","I am from Lyon"],["J’habite à Paris","I live in Paris"]]},
+{n:"At the café",c:[["Un café, s’il vous plaît","A coffee, please"],["Je voudrais un croissant","I would like a croissant"],["De l’eau, s’il vous plaît","Some water, please"],["Je voudrais un thé","I would like a tea"],["C’est combien ?","How much is it?"],["L’addition, s’il vous plaît","The bill, please"]]},
+{n:"Getting by",c:[["Je ne comprends pas","I don’t understand"],["Pouvez-vous répéter ?","Can you repeat that?"],["Parlez-vous anglais ?","Do you speak English?"],["Je ne sais pas","I don’t know"],["Où est la gare ?","Where is the station?"],["Je suis perdu","I am lost"],["À quelle heure ?","At what time?"]]},
+{n:"Real situations",c:[["Je voudrais réserver une table pour deux","I would like to book a table for two"],["Qu’est-ce que vous recommandez ?","What do you recommend?"],["Je cherche un hôtel","I am looking for a hotel"],["Pouvez-vous m’aider ?","Can you help me?"],["Il y a un problème","There is a problem"],["Je voudrais payer par carte","I would like to pay by card"]]}
+];
+var CS=[[0,10],[11,20],[21,69],[70,100],[100,999]],CN=["0–10","11–20","21–69","70–100","100–999"];
+L.push(
+{n:"Days & time",c:[["lundi","Monday"],["samedi","Saturday"],["dimanche","Sunday"],["aujourd’hui","today"],["demain","tomorrow"],["hier","yesterday"],["Quelle heure est-il ?","What time is it?"],["Il est midi","It’s noon"]]},
+{n:"Food & drink",c:[["Le menu, s’il vous plaît","The menu, please"],["Une baguette","A baguette"],["Du fromage","Some cheese"],["Un verre de vin","A glass of wine"],["Je suis végétarien","I am vegetarian"],["C’était délicieux","It was delicious"],["Bon appétit","Enjoy your meal"]]},
+{n:"Getting around",c:[["Où est le métro ?","Where is the metro?"],["À gauche","To the left"],["À droite","To the right"],["Tout droit","Straight ahead"],["C’est loin ?","Is it far?"],["Un billet, s’il vous plaît","A ticket, please"],["Un taxi, s’il vous plaît","A taxi, please"]]},
+{n:"Shopping",c:[["Combien ça coûte ?","How much does it cost?"],["C’est trop cher","It’s too expensive"],["Je regarde, merci","I’m just looking, thanks"],["Je le prends","I’ll take it"],["Je cherche un cadeau","I am looking for a gift"],["Avez-vous une taille plus grande ?","Do you have a bigger size?"]]},
+{n:"Small talk",c:[["Excusez-moi","Excuse me"],["De rien","You’re welcome"],["Je suis fatigué","I am tired"],["Je suis content","I am happy"],["J’ai faim","I am hungry"],["J’ai soif","I am thirsty"],["Il fait beau","The weather is nice"]]}
+);
+var PR={"Bonjour":"bohn-ZHOOR","Bonsoir":"bohn-SWAHR","Salut":"sah-LOO","Au revoir":"oh ruh-VWAHR","Merci":"mehr-SEE","S’il vous plaît":"seel voo PLEH","Oui":"wee","Non":"nohn","Pardon":"pahr-DOHN",
+"zéro":"zay-ROH","un":"uhn","deux":"duh","trois":"trwah","quatre":"KAH-truh","cinq":"sank","six":"sees","sept":"set","huit":"weet","neuf":"nuhf","dix":"dees",
+"Je m’appelle Anna":"zhuh mah-PEL ah-NAH","Comment vous appelez-vous ?":"koh-mohn voo-zah-play-VOO","Enchanté":"ohn-shohn-TAY","Comment ça va ?":"koh-mohn sah VAH","Ça va bien, merci":"sah vah byan mehr-SEE","Je suis de Lyon":"zhuh swee duh lee-OHN","J’habite à Paris":"zhah-BEET ah pah-REE",
+"Un café, s’il vous plaît":"uhn kah-FAY seel voo PLEH","Je voudrais un croissant":"zhuh voo-DREH uhn krwah-SOHN","De l’eau, s’il vous plaît":"duh LOH seel voo PLEH","Je voudrais un thé":"zhuh voo-DREH uhn TAY","C’est combien ?":"seh kohm-BYAN","L’addition, s’il vous plaît":"lah-dee-SYOHN seel voo PLEH",
+"Je ne comprends pas":"zhuh nuh kohm-PRON pah","Pouvez-vous répéter ?":"poo-vay-voo ray-pay-TAY","Parlez-vous anglais ?":"pahr-lay-voo ohn-GLEH","Je ne sais pas":"zhuh nuh seh PAH","Où est la gare ?":"oo eh lah GAHR","Je suis perdu":"zhuh swee pehr-DOO","À quelle heure ?":"ah kel UHR",
+"Je voudrais réserver une table pour deux":"zhuh voo-DREH ray-zehr-VAY oon TAH-bluh poor DUH","Qu’est-ce que vous recommandez ?":"kes-kuh voo ruh-koh-mohn-DAY","Je cherche un hôtel":"zhuh shehrsh uhn oh-TEL","Pouvez-vous m’aider ?":"poo-vay-voo meh-DAY","Il y a un problème":"eel ee ah uhn proh-BLEHM","Je voudrais payer par carte":"zhuh voo-DREH peh-YAY pahr KART",
+"lundi":"luhn-DEE","samedi":"sahm-DEE","dimanche":"dee-MOHNSH","aujourd’hui":"oh-zhoor-DWEE","demain":"duh-MAN","hier":"yehr","Quelle heure est-il ?":"kel UHR eh-TEEL","Il est midi":"eel eh mee-DEE",
+"Le menu, s’il vous plaît":"luh muh-NOO seel voo PLEH","Une baguette":"oon bah-GET","Du fromage":"doo froh-MAHZH","Un verre de vin":"uhn vehr duh VAN","Je suis végétarien":"zhuh swee vay-zhay-tah-RYAN","C’était délicieux":"say-teh day-lee-SYUH","Bon appétit":"bohn ah-pay-TEE",
+"Où est le métro ?":"oo eh luh may-TROH","À gauche":"ah GOHSH","À droite":"ah DRWAHT","Tout droit":"too DRWAH","C’est loin ?":"seh LWAN","Un billet, s’il vous plaît":"uhn bee-YEH seel voo PLEH","Un taxi, s’il vous plaît":"uhn tahk-SEE seel voo PLEH",
+"Combien ça coûte ?":"kohm-BYAN sah KOOT","C’est trop cher":"seh troh SHEHR","Je regarde, merci":"zhuh ruh-GAHRD mehr-SEE","Je le prends":"zhuh luh PROHN","Je cherche un cadeau":"zhuh shehrsh uhn kah-DOH","Avez-vous une taille plus grande ?":"ah-vay-voo oon TAHY ploo GROHND",
+"Excusez-moi":"ehk-skoo-zay-MWAH","De rien":"duh RYAN","Je suis fatigué":"zhuh swee fah-tee-GAY","Je suis content":"zhuh swee kohn-TOHN","J’ai faim":"zhay FAN","J’ai soif":"zhay SWAHF","Il fait beau":"eel feh BOH"};
+var S={m:{},u:0,c:{st:0,r:[]}};
+try{var x=localStorage.getItem("pap");if(x)S=Object.assign(S,JSON.parse(x))}catch(e){}
+S.u=L.length-1;
+function save(){try{localStorage.setItem("pap",JSON.stringify(S))}catch(e){}}
+function $(s){return document.querySelector(s)}
+function shuffle(a){return a.map(function(x){return [Math.random(),x]}).sort(function(p,q){return p[0]-q[0]}).map(function(x){return x[1]})}
+function mv(l,i){return S.m[l+"."+i]||0}
+function pct(l){return L[l].c.filter(function(_,i){return mv(l,i)>=2}).length/L[l].c.length}
+function sn(x){return x.toLowerCase().replace(/[’']/g,"'").replace(/[-?!.,]/g," ").replace(/\s+/g," ").trim()}
+function norm(x){return sn(x.normalize("NFD").replace(/[\u0300-\u036f]/g,""))}
+function say(t){try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang="fr-FR";u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+function accBar(){return '<div class="acc" aria-label="Accent keys">'+"éèêàâçôîûùïë".split("").map(function(c){return '<button type="button" data-acc="'+c+'">'+c+'</button>'}).join("")+'</div>'}
+function dots(m){return "●".repeat(m)+"○".repeat(3-m)}
+
+var tab="learn",sel=0,P=null,Q=null,scope=-1;
+
+/* LEARN */
+function vLearn(){
+ var l=L[sel];
+ if(sel>S.u)return '<div class="card"><h2>'+l.n+'</h2><p>This station is locked. Learn 70% of “'+L[sel-1].n+'” to open it. A phrase counts as learned after you get it right twice in Practise.</p><button class="pri" data-go="practice">Go practise</button></div>';
+ var n=l.c.filter(function(_,i){return mv(sel,i)>=2}).length;
+ return '<div class="card"><h2>'+l.n+'</h2><p class="mute">'+n+' of '+l.c.length+' learned. Tap ▶ to hear a phrase.</p><ul class="ph">'+
+ l.c.map(function(c,i){return '<li><button class="sp" data-say="'+i+'" aria-label="Hear '+c[0]+'">▶</button><div><strong lang="fr">'+c[0]+'</strong><span class="pr">'+(PR[c[0]]||'')+'</span><small>'+c[1]+'</small></div><span class="dots" aria-label="Mastery '+mv(sel,i)+' of 3">'+dots(mv(sel,i))+'</span></li>'}).join("")+
+ '</ul><button class="pri" data-act="start" data-scope="sel">Practise this station</button></div>';
+}
+
+/* PRACTISE */
+function startP(){
+ var pool=[];
+ L.forEach(function(l,li){if(scope<0||li==scope)l.c.forEach(function(_,i){pool.push({l:li,i:i,w:4-mv(li,i)})})});
+ var qs=[],last="";
+ while(qs.length<8){
+  var tot=pool.reduce(function(a,b){return a+b.w},0),r=Math.random()*tot,pick=pool[0];
+  for(var k=0;k<pool.length;k++){r-=pool[k].w;if(r<=0){pick=pool[k];break}}
+  var key=pick.l+"."+pick.i;
+  if(key==last&&pool.length>1)continue;
+  last=key;qs.push({l:pick.l,i:pick.i});
+ }
+ P={qs:qs,k:0,ok:0,done:false,before:S.u,ans:null};
+}
+function qmode(q){var m=mv(q.l,q.i);return m<1?0:m==1?1:2}
+function mkCh(q,mode){
+ var it=L[q.l].c[q.i],fi=mode==0?1:0,t=it[fi],all=[];
+ L.forEach(function(l,li){if(li<=S.u)l.c.forEach(function(c){if(c[fi]!=t)all.push({v:c[fi],near:li==q.l?0:1})})});
+ var d=shuffle(all).sort(function(a,b){return a.near-b.near}).slice(0,3).map(function(x){return x.v});
+ q.ch=shuffle([t].concat(d));
+}
+function vPractice(){
+ if(!P)return '<div class="card"><h2>Practise</h2><p>Eight questions, weighted toward the phrases you know least. New phrases start as multiple choice. Once you know them, you’ll type them from memory.</p><div class="row"><button class="pri" data-act="start" data-scope="sel">Practise “'+L[sel].n+'”</button><button class="sec" data-act="start" data-scope="all">Mix everything</button></div></div>';
+ if(P.done){
+  var up=S.u>P.before;
+  return '<div class="card"><h2>'+P.ok+' of 8 correct</h2><p>Phrases you get right twice count as learned. Try another station whenever you like.</p><div class="row"><button class="pri" data-act="start" data-autofocus>Practise again</button><button class="sec" data-go="learn">Review phrases</button></div></div>';
+ }
+ var q=P.qs[P.k],it=L[q.l].c[q.i],mode=qmode(q);
+ if(!q.ch&&mode<2)mkCh(q,mode);
+ var h='<div class="card"><div class="meta"><span>Question '+(P.k+1)+' of 8</span><span>'+L[q.l].n+'</span></div><div class="bar"><i style="width:'+(P.k/8*100)+'%"></i></div>';
+ h+=mode==0?'<small>What does this mean?</small><div class="big" lang="fr">'+it[0]+' <button class="sp" data-sayq="1" aria-label="Hear it">▶</button></div><span class="pr" style="margin:-8px 0 14px">'+(PR[it[0]]||'')+'</span>':'<small>'+(mode==1?'Pick the French for':'Type the French for')+'</small><div class="big">'+it[1]+'</div>';
+ var a=P.ans;
+ if(mode<2){
+  h+='<div class="ch">'+q.ch.map(function(c,i){var cls="";if(a){var tg=mode==0?it[1]:it[0];if(c==tg)cls="ok";else if(c==a.val)cls="no"}return '<button class="'+cls+'" data-ch="'+i+'"'+(a?' disabled':'')+'>'+c+'</button>'}).join("")+'</div>';
+ }else{
+  h+='<input id="inp" autocomplete="off" autocapitalize="off" spellcheck="false" lang="fr" aria-label="Your answer"'+(a?' disabled value="'+a.val.replace(/"/g,"&quot;")+'"':' data-autofocus')+'>'+(a?'':accBar()+'<button class="pri" data-act="submit">Check</button>');
+ }
+ if(a)h+='<div class="fb'+(a.ok?'':' bad')+'"><strong>'+(a.ok?'Correct.':'Not quite.')+'</strong> '+(a.ok&&!a.note?'':'Answer: <span lang="fr">'+a.tgt+'</span>. ')+(a.note||'')+' <span class="pr">Say it: '+(PR[it[0]]||'')+'</span></div><button class="pri" data-act="next" data-autofocus>'+(P.k==7?'Finish':'Next')+'</button>';
+ return h+'</div>';
+}
+function pAns(val){
+ var q=P.qs[P.k],it=L[q.l].c[q.i],mode=qmode(q),tgt=mode==0?it[1]:it[0],ok,note="";
+ if(mode==2){ok=norm(val)==norm(tgt);if(ok&&sn(val)!=sn(tgt))note="Watch the accents: "+tgt+"."}
+ else ok=val==tgt;
+ var key=q.l+"."+q.i;S.m[key]=Math.max(0,Math.min(3,mv(q.l,q.i)+(ok?1:-1)));
+ if(ok)P.ok++;
+ P.ans={ok:ok,tgt:tgt,note:note,val:val};
+ save();say(it[0]);
+}
+function pNext(){
+ P.ans=null;P.k++;
+ if(P.k>=8){P.done=true;while(S.u<L.length-1&&pct(S.u)>=.7)S.u++;save()}
+}
+
+/* COUNT */
+function newQ(){
+ var st=S.c.st,lo=CS[st][0],hi=CS[st][1],a=Math.random()<.3?0:lo;
+ var n=a+Math.floor(Math.random()*(hi-a+1)),type=Math.random()<.5?"type":"pick",ch=null;
+ if(type=="pick"){
+  var s=[n],cand=shuffle([n+1,n-1,n+10,n-10,n+2,n-2,n+20,+String(n).split("").reverse().join("")]);
+  cand.forEach(function(c){if(c>=0&&s.indexOf(c)<0&&s.length<4)s.push(c)});
+  while(s.length<4){var z=Math.floor(Math.random()*(hi+1));if(s.indexOf(z)<0)s.push(z)}
+  ch=shuffle(s);
+ }
+ Q={n:n,type:type,ch:ch,ans:null};
+}
+function vCount(){
+ if(!Q)newQ();
+ var st=S.c.st,r=S.c.r,a=Q.ans;
+ var h='<div class="card"><p class="mute">Pick a range. Move up whenever you like.</p><div class="acc">'+CN.map(function(c,i){return '<button data-cst="'+i+'"'+(i==st?' style="background:var(--acc);color:var(--on)"':'')+'>'+c+'</button>'}).join("")+'</div><div class="meta"><span>Recent answers</span><span aria-label="Recent answers">'+r.map(function(v){return v?"✓":"✗"}).join(" ")+'</span></div>';
+ h+='<div class="bar"><i style="width:'+Math.min(100,r.filter(Boolean).length/8*100)+'%"></i></div>';
+ if(Q.type=="type")h+='<small>Type this number in French</small><div class="big num">'+Q.n+'</div>';
+ else h+='<small>Which number is this?</small><div class="big" lang="fr">'+f(Q.n)+' <button class="sp" data-sayq="1" aria-label="Hear it">▶</button></div>';
+ if(Q.type=="pick"){
+  h+='<div class="ch">'+Q.ch.map(function(c,i){var cls="";if(a){if(c==Q.n)cls="ok";else if(c==a.val)cls="no"}return '<button class="'+cls+'" data-cch="'+c+'"'+(a?' disabled':'')+'>'+c+'</button>'}).join("")+'</div>';
+ }else{
+  h+='<input id="inp" autocomplete="off" autocapitalize="off" spellcheck="false" lang="fr" aria-label="The number in French"'+(a?' disabled value="'+a.val.replace(/"/g,"&quot;")+'"':' data-autofocus')+'>'+(a?'':accBar()+'<button class="pri" data-act="csubmit">Check</button>');
+ }
+ if(a)h+='<div class="fb'+(a.ok?'':' bad')+'"><strong>'+(a.ok?'Correct.':'Not quite.')+'</strong> '+Q.n+' is <span lang="fr">'+f(Q.n)+'</span>.'+'</div><button class="pri" data-act="cnext" data-autofocus>Next number</button>';
+ h+='<details><summary>See the numbers in this stage</summary><div class="grid">';
+ var ref=[];
+ if(st<2){for(var i=CS[st][0];i<=CS[st][1];i++)ref.push(i)}
+ else ref=[[20,21,30,40,50,60,69],[70,71,75,80,81,90,91,99,100],[100,101,200,250,300,999]][st-2];
+ h+=ref.map(function(i){return '<span><b>'+i+'</b><span lang="fr">'+f(i)+'</span></span>'}).join("")+'</div></details>';
+ return h+'</div>';
+}
+function cAns(val,ok){
+ S.c.r.push(ok);S.c.r=S.c.r.slice(-10);
+ Q.ans={ok:ok,val:val};save();say(f(Q.n));
+}
+
+/* RENDER */
+function render(){
+ $("#line").innerHTML=L.map(function(l,i){return '<button class="st'+(i==sel?' on':'')+(i<=S.u?' open':'')+'" data-lv="'+i+'" aria-label="Station '+(i+1)+': '+l.n+(i>S.u?', locked':', '+Math.round(pct(i)*100)+'% learned')+'"><i style="--p:'+Math.round(pct(i)*100)+'"><b>'+(i+1)+'</b></i><span>'+l.n+'</span></button>'}).join("");
+ document.querySelectorAll(".tabs button").forEach(function(b){b.setAttribute("aria-selected",b.dataset.tab==tab)});
+ $("#view").innerHTML=tab=="learn"?vLearn():tab=="practice"?vPractice():vCount();
+ var el=$("[data-autofocus]");if(el)el.focus({preventScroll:true});
+}
+document.addEventListener("pointerdown",function(e){if(e.target.closest("[data-acc]"))e.preventDefault()});
+document.addEventListener("click",function(e){
+ var t=e.target.closest("button");if(!t)return;var d=t.dataset;
+ if(d.tab){tab=d.tab}
+ else if(d.lv!==undefined){sel=+d.lv;tab="learn"}
+ else if(d.go){tab=d.go;if(d.go=="learn")sel=Math.min(sel,S.u)}
+ else if(d.say!==undefined){say(L[sel].c[+d.say][0]);return}
+ else if(d.sayq){say(tab=="count"?f(Q.n):L[P.qs[P.k].l].c[P.qs[P.k].i][0]);return}
+ else if(d.acc){var i=$("#inp");if(i){var p=i.selectionStart||i.value.length;i.value=i.value.slice(0,p)+d.acc+i.value.slice(i.selectionEnd||p);i.focus();i.setSelectionRange(p+1,p+1)}return}
+ else if(d.cst!==undefined){S.c.st=+d.cst;S.c.r=[];save();newQ()}
+ else if(d.act=="start"){if(d.scope)scope=d.scope=="all"?-1:sel;tab="practice";startP()}
+ else if(d.act=="submit"){var v=$("#inp").value;if(!v.trim())return;pAns(v)}
+ else if(d.act=="next")pNext();
+ else if(d.ch!==undefined){pAns(P.qs[P.k].ch[+d.ch])}
+ else if(d.act=="csubmit"){var v2=$("#inp").value;if(!v2.trim())return;cAns(v2,norm(v2)==norm(f(Q.n)))}
+ else if(d.cch!==undefined){cAns(+d.cch,+d.cch==Q.n)}
+ else if(d.act=="cnext")newQ();
+ else return;
+ render();
+});
+document.addEventListener("keydown",function(e){
+ if(e.key=="Enter"&&e.target.id=="inp"){var b=$("[data-act=submit],[data-act=csubmit]");if(b)b.click()}
+});
+render();
+</script>
+</body>
+</html>
